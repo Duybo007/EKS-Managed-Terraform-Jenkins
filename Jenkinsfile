@@ -23,6 +23,13 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Duybo007/EKS-Managed-Terraform-Jenkins.git'
             }
         }
+
+        stage('Check Terraform') {
+           steps {
+               sh 'terraform version'
+           }
+       }
+        
         stage('Init') {
             steps {
                 withAWS(credentials: 'aws-creds', region: 'us-east-1') {
